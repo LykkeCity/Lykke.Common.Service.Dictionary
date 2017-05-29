@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Lykke.AzureRepositories;
+using Lykke.AzureRepositories.Azure.Tables;
+using Lykke.AzureRepositories.Log;
+using Lykke.Core.Log;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +27,7 @@ namespace Lykke.Common.Service.Dictionary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            BuildContainer(services);
             // Add framework services.
             services.AddMvc();
         }
@@ -38,6 +39,15 @@ namespace Lykke.Common.Service.Dictionary
             loggerFactory.AddDebug();
 
             app.UseMvc();
+        }
+
+
+        private void BuildContainer(IServiceCollection services)
+        {
+            var connectionString = Configuration.GetValue<string>("ConnectionString");
+            
+            services.AddSingleton(Configuration);
+            services.RegisterRepositories(connectionString, new LogToConsole());
         }
     }
 }
