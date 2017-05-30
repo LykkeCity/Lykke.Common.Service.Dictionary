@@ -1,5 +1,5 @@
-﻿using Lykke.AzureRepositories;
-using Lykke.AzureRepositories.Log;
+﻿using System;
+using Lykke.AzureRepositories;
 using Lykke.Common.Service.Dictionary.Code;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
