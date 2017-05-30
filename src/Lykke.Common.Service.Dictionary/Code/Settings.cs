@@ -15,7 +15,8 @@
 
     public class DbSettings
     {
-        public string GeeneralConnString { get; set; }
+        public string DictsConnString { get; set; }
+        public string LogConnString { get; set; }
 
     }
 

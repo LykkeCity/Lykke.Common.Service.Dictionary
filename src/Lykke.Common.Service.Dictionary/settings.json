@@ -1,7 +1,7 @@
 ﻿{
     "CommonServiceDistionary": {
         "Db": {
-            "GeeneralConnString": "UseDevelopmentStorage=true"
+            "DictsConnString": "UseDevelopmentStorage=true"
         }
     }
 }

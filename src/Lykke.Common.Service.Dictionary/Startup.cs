@@ -53,7 +53,7 @@ namespace Lykke.Common.Service.Dictionary
             var settings = generalSettings.CommonServiceDictionary;
 
             services.AddSingleton(settings);
-            services.RegisterRepositories(settings.Db.GeeneralConnString, new LogToConsole());
+            services.RegisterRepositories(settings.Db.DictsConnString, null);
         }
     }
 }
