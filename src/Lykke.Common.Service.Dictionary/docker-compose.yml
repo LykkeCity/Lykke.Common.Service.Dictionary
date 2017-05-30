@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  apirunner:
+    image: lykkex/publicapi
+    ports:
+     - "80:3003"
+    environment:
+     - ConnectionString=UseDevelopmentStorage=true

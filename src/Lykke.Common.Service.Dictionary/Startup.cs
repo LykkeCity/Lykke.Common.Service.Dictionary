@@ -1,7 +1,6 @@
 ﻿using Lykke.AzureRepositories;
-using Lykke.AzureRepositories.Azure.Tables;
 using Lykke.AzureRepositories.Log;
-using Lykke.Core.Log;
+using Lykke.Common.Service.Dictionary.Code;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,9 +44,16 @@ namespace Lykke.Common.Service.Dictionary
         private void BuildContainer(IServiceCollection services)
         {
             var connectionString = Configuration.GetValue<string>("ConnectionString");
-            
-            services.AddSingleton(Configuration);
-            services.RegisterRepositories(connectionString, new LogToConsole());
+
+#if DEBUG
+            var generalSettings = SettingsReader.SettingsReader.ReadGeneralSettings<Settings>(connectionString);
+#else
+            var generalSettings = SettingsReader.SettingsReader.ReadGeneralSettings<Settings>(new Uri(connectionString));
+#endif
+            var settings = generalSettings.CommonServiceDictionary;
+
+            services.AddSingleton(settings);
+            services.RegisterRepositories(settings.Db.GeeneralConnString, new LogToConsole());
         }
     }
 }

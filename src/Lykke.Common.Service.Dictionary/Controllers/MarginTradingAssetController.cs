@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Lykke.Common.Entities.Dictionaries;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,9 @@ namespace Lykke.Common.Service.Dictionary.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<IEnumerable<IMarginTradingAsset>> Get()
+        public async Task<IEnumerable<MarginTradingAsset>> Get()
         {
-            return await _marginTradingAssetsRepository.GetAllAsync();
+            return (await _marginTradingAssetsRepository.GetAllAsync()).Select(MarginTradingAsset.Create);
         }
 
        
