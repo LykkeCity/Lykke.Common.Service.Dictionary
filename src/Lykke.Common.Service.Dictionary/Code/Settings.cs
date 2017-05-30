@@ -16,7 +16,6 @@
     public class DbSettings
     {
         public string DictsConnString { get; set; }
-        public string LogConnString { get; set; }
 
     }
 

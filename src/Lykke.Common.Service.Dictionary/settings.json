@@ -1,5 +1,5 @@
 ﻿{
-    "CommonServiceDistionary": {
+    "CommonServiceDictionary": {
         "Db": {
             "DictsConnString": "UseDevelopmentStorage=true"
         }
